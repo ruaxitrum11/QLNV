@@ -11,23 +11,23 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('frontend.register');
-//});
+Route::get('/', function () {
+    return view('frontend.register');
+});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 
 // ==============Register===================
-Route::get('/register', 'Auth\RegisterController@getRegister')->name('auth.index');
+Route::get('/', 'Auth\RegisterController@getRegister')->name('auth.index');
 Route::post('/register', 'Auth\RegisterController@postRegister')->name('auth.postRegister');
 //===============End Register===============
 
 // ==============Login===================
-Route::get('/login', 'Auth\LoginController@getLogin')->name('auth.getLogin');
-Route::post('/login', 'Auth\LoginController@postLogin')->name('auth.postLogin');
+//Route::get('/login', 'Auth\LoginController@getLogin')->name('auth.getLogin');
+//Route::post('/login', 'Auth\LoginController@postLogin')->name('auth.postLogin');
 
-//Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
-//Route::post('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@postLogin']);
+Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
+Route::post('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@postLogin']);
 //===============End Login===============

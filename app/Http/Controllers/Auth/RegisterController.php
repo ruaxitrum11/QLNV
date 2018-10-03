@@ -69,21 +69,20 @@ class RegisterController extends Controller
         ]); 
     }
     public function getRegister() {
-        dd(1);
         return view('frontend.register');
     }
 
     public function postRegister(RegisterRequest $request) {
 
         $datas = $request->all();
-//        dd($datas);
+        dd($datas);
         $validator = $this->validator($datas);
         if($validator->fails()){
             return redirect('/')->withErrors($validator)->withInput();
         }else {
             if($this->create($datas)){
                 Session::flash('success','Bạn đã đăng ký thành công , vui lòng đăng nhập');
-                return redirect('/login'); 
+                return redirect('/login');
             }else{
                 Session:flash('error','Đăng ký thất bại');
                 return redirect('/');

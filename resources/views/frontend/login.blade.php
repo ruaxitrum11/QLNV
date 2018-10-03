@@ -6,7 +6,7 @@
 		<a href="/" id="register-form-link">Register</a>
 	</div>
 	<div class="col-xs-6">
-		<a href="{{ route('auth.getLogin') }}" class="active" id="login-form-link">Login</a>
+		<a href="/login" class="active" id="login-form-link">Login</a>
 	</div>
 </div>
 @endsection
@@ -44,8 +44,7 @@
 	</button>
 </div>
 @endif
-<form id="login-form" action="{{ route('auth.postLogin') }}" method="post" role="form">
-	{{csrf_field()}}
+<form id="login-form" action="" method="post" role="form">
 	<div class="form-group">
 		<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 	</div>
