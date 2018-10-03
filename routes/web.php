@@ -24,21 +24,23 @@ Route::get('/', 'Auth\RegisterController@getRegister')->name('auth.index');
 Route::post('/register', 'Auth\RegisterController@postRegister')->name('auth.postRegister');
 //===============End Register===============
 
+
 // ==============Login===================
 Route::get('/login', 'Auth\LoginController@getLogin')->name('auth.getLogin');
 Route::post('/login', 'Auth\LoginController@postLogin')->name('auth.postLogin');
-
-//Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
-//Route::post('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@postLogin']);
 //===============End Login===============
 
 
-//==============Dashboard===================
-
-Route::get('/dashboard', function (){
-    return view('backend.dashboard');
-});
+// ==============Logout===================
 Route::get('/logout','Auth\LogoutController@getLogOut')->name('auth.getLogOut');
+//===============End Logout===============
 
 
 //==============Dashboard===================
+Route::get('/dashboard','Task\TaskController@getTask')->name('task.getTask');
+Route::post('dashboard/addTask','Task\TaskController@postAddTask')->name('task.postAddTask');
+
+//==============End Dashboard===============
+
+
+

@@ -76,7 +76,7 @@ class RegisterController extends Controller
 
         $datas = $request->all();
 //        dd($datas);
-        $validator = Validator::make($datas);
+        $validator = Validator::make($datas,[]);
         if($validator->fails()){
             return redirect('/')->withErrors($validator)->withInput();
         }else {

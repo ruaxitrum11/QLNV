@@ -7,6 +7,7 @@
 	<title>PT3 - VNC - @yield('title')</title>
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/css/frontend/login.css') }}">
+	<link @yield('dashboard-css')>
 </head>
 <body>
 	<div class="container">
@@ -26,6 +27,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="row">
+			@yield('todolist-content')
 		</div>
 	</div>
 </body>

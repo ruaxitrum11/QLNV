@@ -38,12 +38,15 @@
 		<li>{{ $error }}</li>
 		@endforeach
 	</ul>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<button style="top: -55px!important;right: -28px!important;" type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 		<span class="sr-only">Close</span>
 	</button>
 </div>
 @endif
+{{--<p>{{ $a }}</p>--}}
+{{--<p>{{ $b }}</p>--}}
+{{--<p>{{ $c }}</p>--}}
 <form id="login-form" action="{{route('auth.postLogin')}}" method="post" role="form">
 	{{csrf_field()}}
 	<div class="form-group">
