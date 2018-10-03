@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\User\RegisterRequest;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -39,7 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -48,12 +48,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-
-        ]);
-    }
+//    protected function validator(array $data)
+//    {
+//        return Validator::make($data, [
+//
+//        ]);
+//    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -75,8 +75,8 @@ class RegisterController extends Controller
     public function postRegister(RegisterRequest $request) {
 
         $datas = $request->all();
-        dd($datas);
-        $validator = $this->validator($datas);
+//        dd($datas);
+        $validator = Validator::make($datas);
         if($validator->fails()){
             return redirect('/')->withErrors($validator)->withInput();
         }else {
@@ -84,7 +84,7 @@ class RegisterController extends Controller
                 Session::flash('success','Bạn đã đăng ký thành công , vui lòng đăng nhập');
                 return redirect('/login');
             }else{
-                Session:flash('error','Đăng ký thất bại');
+                Session::flash('error','Đăng ký thất bại');
                 return redirect('/');
             }
         }

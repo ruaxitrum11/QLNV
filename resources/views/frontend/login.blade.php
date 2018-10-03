@@ -44,7 +44,7 @@
 	</button>
 </div>
 @endif
-<form id="login-form" action="" method="post" role="form">
+<form id="login-form" action="{{route('auth.postLogin')}}" method="post" role="form">
 	<div class="form-group">
 		<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 	</div>

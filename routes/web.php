@@ -25,9 +25,9 @@ Route::post('/register', 'Auth\RegisterController@postRegister')->name('auth.pos
 //===============End Register===============
 
 // ==============Login===================
-//Route::get('/login', 'Auth\LoginController@getLogin')->name('auth.getLogin');
-//Route::post('/login', 'Auth\LoginController@postLogin')->name('auth.postLogin');
+Route::get('/login', 'Auth\LoginController@getLogin')->name('auth.getLogin');
+Route::post('/login', 'Auth\LoginController@postLogin')->name('auth.postLogin');
 
-Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
-Route::post('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@postLogin']);
+//Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
+//Route::post('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@postLogin']);
 //===============End Login===============
