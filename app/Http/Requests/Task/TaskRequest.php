@@ -34,7 +34,7 @@ class TaskRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'=>'Công việc mới'
+            'name'=>'Công việc cần làm'
         ];
     }
 }

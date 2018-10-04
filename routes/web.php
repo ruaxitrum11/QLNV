@@ -38,7 +38,8 @@ Route::get('/logout','Auth\LogoutController@getLogOut')->name('auth.getLogOut');
 
 //==============Dashboard===================
 Route::get('/dashboard','Task\TaskController@getTask')->name('task.getTask');
-Route::post('dashboard/addTask','Task\TaskController@postAddTask')->name('task.postAddTask');
+Route::post('/dashboard/addTask','Task\TaskController@postAddTask')->name('task.postAddTask');
+Route::put('/dashboard/editTask','Task\TaskController@editTask')->name('task.editTask');
 
 //==============End Dashboard===============
 

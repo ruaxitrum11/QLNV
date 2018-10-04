@@ -1,5 +1,8 @@
 @extends('master')
 @section('title','Trang Chủ')
+@section('csrf-token')
+     name="csrf-token" content="{{ csrf_token() }}"
+@endsection
 @section('dashboard-css')
     rel="stylesheet" type="text/css" href="{{ asset('/css/frontend/dashboard.css') }}"
 @endsection
@@ -59,15 +62,17 @@
     <ul id="myUL">
         {{--{{ $task }}--}}
         @foreach($task as $item)
-            <li>
-                <span>{{$item->name}}</span>
-            <a href=""><span class="glyphicon glyphicon-remove"></span></a>
-            <a href=""><span class="glyphicon glyphicon-edit"></span></a>
+            <li class="task-ddd-{{$item->id}}">
+                <input id="task-content-{{$item->id}}" class="task-ddd-{{$item->id}} task-{{$item->id}}" disabled type="text" value="{{$item->name}}">
+            <span class="glyphicon glyphicon-remove addTask" ></span>
+            <span class="editTask-{{$item->id}} glyphicon glyphicon-edit" onclick="editTask({{$item->id}})" ></span>
+                <a href="/dashboard"> <span style="display: none" class="cancelEditTask-{{$item->id}} glyphicon glyphicon-repeat"></span></a>
+                <span style="display: none" class="confirmEditTask-{{$item->id}} glyphicon glyphicon-ok" onclick="confirmEditTask({{$item->id}})"></span>
             </li>
             @endforeach
-        <li>
-    </ul>
-    {{ $task->links() }}
+        <div class="content-msg"></div>
 
+    </ul>
+    <div class="paginate" style="text-align: center;">{{ $task->render() }}</div>
 @endsection
 
