@@ -58,19 +58,18 @@
             <input type="submit" tabindex="4" class="addBtn" value="Thêm">
         </form>
     </div>
-
+    <div class="alert alert-success alert-dismissible content-msg" role="alert" hidden style="margin-top: 20px;"></div>
     <ul id="myUL">
         {{--{{ $task }}--}}
         @foreach($task as $item)
             <li class="task-ddd-{{$item->id}}">
-                <input id="task-content-{{$item->id}}" class="task-ddd-{{$item->id}} task-{{$item->id}}" disabled type="text" value="{{$item->name}}">
-            <span class="glyphicon glyphicon-remove addTask" ></span>
+                <input id="task-content-{{$item->id}}" class="task-content task-ddd-{{$item->id}} task-{{$item->id}}" disabled type="text" value="{{$item->name}}">
+                 <span onclick="deleteTask({{$item->id}})" class="glyphicon glyphicon-remove addTask" ></span>
             <span class="editTask-{{$item->id}} glyphicon glyphicon-edit" onclick="editTask({{$item->id}})" ></span>
                 <a href="/dashboard"> <span style="display: none" class="cancelEditTask-{{$item->id}} glyphicon glyphicon-repeat"></span></a>
                 <span style="display: none" class="confirmEditTask-{{$item->id}} glyphicon glyphicon-ok" onclick="confirmEditTask({{$item->id}})"></span>
             </li>
             @endforeach
-        <div class="content-msg"></div>
 
     </ul>
     <div class="paginate" style="text-align: center;">{{ $task->render() }}</div>

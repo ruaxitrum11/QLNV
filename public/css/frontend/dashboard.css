@@ -131,3 +131,8 @@ input:focus{
 .clicked {
     background:#ddd!important;
 }
+.task-content::placeholder{
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #8cb4d6;
+}

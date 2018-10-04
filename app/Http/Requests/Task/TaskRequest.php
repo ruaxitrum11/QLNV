@@ -2,8 +2,11 @@
 
 namespace App\Http\Requests\Task;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class TaskRequest extends FormRequest
 {
@@ -36,5 +39,19 @@ class TaskRequest extends FormRequest
         return [
             'name'=>'Công việc cần làm'
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @return void
+     *
+     * @throws HttpResponseException
+     */
+    protected function failedValidation(Validator $validator) : void
+    {
+        $errors = (new ValidationException($validator))->errors();
+        throw new HttpResponseException(response()->json($errors));
     }
 }
