@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Task;
 
+use App\Http\Requests\Task\TaskCreateRequest;
 use App\Http\Requests\Task\TaskRequest;
 use App\Task;
 use http\Env\Response;
@@ -29,7 +30,7 @@ class TaskController extends Controller
         return view('frontend.dashboard')->with('task', $task);
     }
 
-    public function postAddTask(TaskRequest $request)
+    public function postAddTask(TaskCreateRequest $request)
     {
 //        dd($request);
         $data = $request->all();
@@ -85,7 +86,7 @@ class TaskController extends Controller
         $data_delete = false;
         try{
             $task = Task::find($id);
-            $task->delete();
+            $data_delete = $task->delete();
             return $data_delete;
         }catch (\Exception $e){
             return $data_delete;
@@ -98,6 +99,7 @@ class TaskController extends Controller
                 'status' => 'success',
                 'msg' => 'Xóa công việc thành công',
             ];
+//            dd(json($response));
             return response()->json($response);
         }else{
             $response = [

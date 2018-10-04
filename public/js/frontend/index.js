@@ -92,7 +92,7 @@ function deleteTask(id) {
         buttons:{
             'Đồng ý': function() {
                     var id = this.$content.find('.task-id').val();
-                    console.log(id);
+                    // console.log(id);
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -100,36 +100,37 @@ function deleteTask(id) {
                     });
                     $.ajax({
                         method: 'delete',
-                        url: '/dashboard/deleteTask/'+ id
+                        url: '/dashboard/deleteTask/'+ id,
+                        success:function(res) {
+                            console.log(res);
+                            if(res.status == 'success') {
+                                $.confirm({
+                                    title: 'Thông báo!',
+                                    content: res.msg,
+                                    buttons: {
+                                        Ok: function () {
+                                            location.reload();
+                                        },
+                                    }
+                                });
+                            }else {
+                                $.confirm({
+                                    title: 'Thông báo!',
+                                    content: 'Xóa sản phẩm thất bại',
+                                    buttons: {
+                                        Ok: function () {
+                                            location.reload();
+                                        },
+                                    }
+                                });
+                            }
+                        }
                     })
                 },
             'Hủy bỏ': function () {
 
             }
         },
-        success:function (res) {
-            if(res.status== 'success') {
-                $.confirm({
-                    title: 'Thông báo!',
-                    content: res.msg,
-                    buttons: {
-                        Ok: function () {
-                            location.reload();
-                        },
-                    }
-                });
-            }else {
-                $.confirm({
-                    title: 'Thông báo!',
-                    content: 'Xóa sản phẩm thất bại',
-                    buttons: {
-                        Ok: function () {
-                            location.reload();
-                        },
-                    }
-                });
-            }
-        }
 
     })
    
