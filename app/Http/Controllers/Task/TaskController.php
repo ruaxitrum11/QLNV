@@ -22,7 +22,9 @@ class TaskController extends Controller
     }
     public function getTask()
     {
-        $task = Task::all()->sortByDesc('created_at');
+        $task = Task::paginate(3)->sortByDesc('created_at');
+
+//        dd($task);
 
         return view('frontend.dashboard')->with('task', $task);
     }

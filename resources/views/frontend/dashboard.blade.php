@@ -67,6 +67,7 @@
             @endforeach
         <li>
     </ul>
+    {{ $task->links() }}
 
 @endsection
 
