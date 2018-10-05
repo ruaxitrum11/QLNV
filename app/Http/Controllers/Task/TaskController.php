@@ -8,11 +8,17 @@ use App\Task;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     protected function create(array $data)
     {
@@ -25,7 +31,9 @@ class TaskController extends Controller
 
     public function getTask()
     {
-        $task = Task::orderBy('created_at', 'DECS')->paginate(10);
+        $user_id = Auth::user()->id;
+//        dd($user_id);
+        $task = Task::where('user_id',$user_id)->orderBy('created_at', 'DECS')->paginate(10);
 
         return view('frontend.dashboard')->with('task', $task);
     }
@@ -34,11 +42,6 @@ class TaskController extends Controller
     {
 //        dd($request);
         $data = $request->all();
-        $validator = Validator::make([$data], []);
-//        dd($validator);
-        if ($validator->fails()) {
-            return redirect('/dashboard')->withErrors($validator)->withInput();
-        } else {
             if ($this->create($data)) {
                 Session::flash('success', 'Thêm công việc mới thành công');
                 return redirect('/dashboard');
@@ -46,7 +49,7 @@ class TaskController extends Controller
                 Session::flash('fail', 'Thêm công việc mới thất bại');
                 return redirect('/dashboard');
             }
-        }
+
     }
 
     protected function update(array $data, int $id)

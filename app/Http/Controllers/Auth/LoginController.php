@@ -48,24 +48,19 @@ class LoginController extends Controller
     public function postLogin(LoginRequest $request) {
 //        dd($request);
         $datas = $request->all();
+        $username = $datas['username'];
+        $password = $datas['password'];
 
-        $validator = Validator::make($datas, []);
-//        dd($validator);
-        if($validator->fails()){
-            return redirect('/login')->withErrors()->withInput();
+        if(Auth::attempt([
+            'username'=>$username ,
+            'password'=> $password
+        ])) {
+            return redirect('/');
         }else {
-            $username = $datas['username'];
-            $password = $datas['password'];
-            if(Auth::attempt([
-                'username'=>$username ,
-                'password'=> $password
-            ])) {
-                return redirect('/dashboard');
-            }else {
-                Session::flash('error','Username hoặc Password không đúng');
-                return redirect('/login');
-            }
+            Session::flash('error','Username hoặc Password không đúng');
+            return redirect('/login');
         }
+
 
     }
 }

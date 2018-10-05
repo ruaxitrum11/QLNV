@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\permission;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +25,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
 
     /**
      * Where to redirect users after registration.
@@ -63,10 +65,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
-        ]); 
+            'permission_id' => 1,
+        ]);
+
+        return $user;
     }
     public function getRegister() {
         return view('frontend.register');
@@ -76,10 +81,6 @@ class RegisterController extends Controller
 
         $datas = $request->all();
 //        dd($datas);
-        $validator = Validator::make($datas,[]);
-        if($validator->fails()){
-            return redirect('/')->withErrors($validator)->withInput();
-        }else {
             if($this->create($datas)){
                 Session::flash('success','Bạn đã đăng ký thành công , vui lòng đăng nhập');
                 return redirect('/login');
@@ -87,6 +88,6 @@ class RegisterController extends Controller
                 Session::flash('error','Đăng ký thất bại');
                 return redirect('/');
             }
-        }
+
     }
 }

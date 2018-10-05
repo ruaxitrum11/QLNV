@@ -43,5 +43,12 @@ Route::put('/dashboard/editTask/{id}','Task\TaskController@editTask')->name('tas
 Route::delete('/dashboard/deleteTask/{id}','Task\TaskController@deleteTask')->name('task.deleteTask');
 //==============End Dashboard===============
 
+//==============Admin Home===================
+Route::group(['middleware'=>'permission'],function(){
+    Route::get('/admin','Admin\HomeController@getHome')->name('admin.getHome');
+    Route::post('/admin/addUser','Admin\HomeController@addUser')->name('admin.addUser');
+});
+//Route::get('/admin','Admin\HomeController@getHome')->name('admin.getHome');
+//==============End Admin Home===============
 
 

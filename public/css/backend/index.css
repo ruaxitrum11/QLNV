@@ -1,0 +1,21 @@
+.table {
+    text-align: center;
+}
+.table>thead>tr>th{
+    text-align: center;
+}
+.addUser {
+    margin : 30px 0;
+}
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    outline:none;
+}
+.form-group{
+    width: 50%;
+}
+.glyphicon {
+    margin: 0 20px;
+}

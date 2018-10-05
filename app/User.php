@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\permission;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'password',
+        'username', 'password', 'permission_id', 'remember_token'
     ];
 
     /**
@@ -32,5 +33,41 @@ class User extends Authenticatable
     {
         $this->attributes['password']=bcrypt($password);
     }
+
+    public function permissions()
+    {
+        return $this->hasOne(permission::class, 'permission_id', 'id');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class,'user_id','id');
+    }
+
+    public function isManager(){
+        if($this->permission_id===2){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+//    public function authorizePermission($permissions)
+//    {
+//        if(is_array($permissions)){
+//            return $this->hasAnyPermission($permissions);
+//        }
+//        return $this->hasPermission($permissions);
+//    }
+//
+//    public function hasAnyPermission($permissions)
+//    {
+////        dd($permissions);
+//        return null !== $this->permissions()->whereIn('name',$permissions);
+//    }
+//    public function hasPermission($permissions)
+//    {
+//        return null !== $this->permissions()->where('name', $permissions);
+//    }
 
 }
