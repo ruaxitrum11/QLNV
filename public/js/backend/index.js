@@ -27,20 +27,7 @@ function addUser() {
             password_confirmation : password_confirmation
         },
         success:function (res) {
-
-            if(res.status = 'success' && (!res.username && !res.password)){
-
-                $.confirm({
-                    title: 'Thông báo!',
-                    content: '<span class="text-success"><strong class="fa fa-check"></strong>' + res.msg + '</span>',
-                    buttons: {
-                        Ok:  function() {
-                           location.reload();
-                        },
-                    }
-                });
-            } else if(res.username){
-                // console.log(contents);
+              if(res.username){
                 $.confirm({
                     title: 'Thông báo!',
                     content: '<span class="text-danger"><strong class="fa fa-close"></strong>' + res.username + '</span>',
@@ -51,8 +38,7 @@ function addUser() {
                         },
                     }
                 });
-            }else{
-                // console.log(contents);
+            }else if(res.password){
                 $.confirm({
                     title: 'Thông báo!',
                     content: '<span class="text-danger"><strong class="fa fa-close"></strong>' + res.password+ '</span>',
@@ -63,7 +49,17 @@ function addUser() {
                         },
                     }
                 });
-            }
+            }else{
+                  $.confirm({
+                      title: 'Thông báo!',
+                      content: '<span class="text-success"><strong class="fa fa-check"></strong>' + res.msg + '</span>',
+                      buttons: {
+                          Ok:  function() {
+                              location.reload();
+                          },
+                      }
+                  });
+              }
         }
     });
 }
