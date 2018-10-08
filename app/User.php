@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'permission_id', 'remember_token'
+        'username', 'name' , 'password', 'permission_id', 'remember_token'
     ];
 
     /**
@@ -34,9 +34,9 @@ class User extends Authenticatable
         $this->attributes['password']=bcrypt($password);
     }
 
-    public function permissions()
+    public function permission()
     {
-        return $this->hasOne(permission::class, 'permission_id', 'id');
+        return $this->hasOne(permission::class, 'id', 'permission_id');
     }
 
     public function tasks()

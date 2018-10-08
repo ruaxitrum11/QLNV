@@ -4,12 +4,12 @@
      name="csrf-token" content="{{ csrf_token() }}"
 @endsection
 @section('dashboard-css')
-    rel="stylesheet" type="text/css" href="{{ asset('/css/frontend/dashboard.css') }}"
+    rel="stylesheet" type="text/css" href="{{ asset('/css/frontend/dashboard.css')}}"
 @endsection
 @section('content')
     @if (Auth::check())
         <div class="col-md-6">
-            <p>Chào, <span style="font-size: 3rem!important;font-weight: bold;">{{ Auth::user()->username }}</span></p>
+            <p>Chào, <p style="font-size: 3rem!important;font-weight: bold;">{{ Auth::user()->name }}</p></p>
         </div>
         <div class="col-md-6 pull-right" style="margin-top: 3px;width:auto;"><a class="btn btn-primary" href="{{route('auth.getLogOut')}}">Đăng xuất</a></div>
 
@@ -60,7 +60,7 @@
     </div>
     <div class="alert alert-success alert-dismissible content-msg" role="alert" hidden style="margin-top: 20px;"></div>
     <ul id="myUL">
-        {{--{{ $task }}--}}
+        @if($task->total() != 0)
         @foreach($task as $item)
             <li class="task-ddd-{{$item->id}}">
                 <input id="task-content-{{$item->id}}" class="task-content task-ddd-{{$item->id}} task-{{$item->id}}" disabled type="text" value="{{$item->name}}">
@@ -70,7 +70,9 @@
                 <span style="display: none" class="confirmEditTask-{{$item->id}} glyphicon glyphicon-ok" onclick="confirmEditTask({{$item->id}})"></span>
             </li>
             @endforeach
-
+            @else
+            <li>Công việc trống !</li>
+@endif
     </ul>
     <div class="paginate" style="text-align: center;">{{ $task->render() }}</div>
 @endsection

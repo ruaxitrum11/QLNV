@@ -34,7 +34,7 @@ class TaskController extends Controller
         $user_id = Auth::user()->id;
 //        dd($user_id);
         $task = Task::where('user_id',$user_id)->orderBy('created_at', 'DECS')->paginate(10);
-
+//        dd($task->total());
         return view('frontend.dashboard')->with('task', $task);
     }
 

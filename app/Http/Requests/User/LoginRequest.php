@@ -33,4 +33,11 @@ class LoginRequest extends FormRequest
             ]
         ];
     }
+    public  function attributes()
+    {
+        return [
+            'username'=>'Tên tài khoản',
+            'password' => 'Mật khẩu'
+        ];
+    }
 }

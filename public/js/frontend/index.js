@@ -102,7 +102,7 @@ function deleteTask(id) {
                         method: 'delete',
                         url: '/dashboard/deleteTask/'+ id,
                         success:function(res) {
-                            console.log(res);
+                            // console.log(res);
                             if(res.status == 'success') {
                                 $.confirm({
                                     title: 'Thông báo!',

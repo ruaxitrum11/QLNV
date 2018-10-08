@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserCreateRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,46 +28,20 @@ class UserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => [
-                'required',
-                'min:5',
-                Rule::unique('users', 'username')
-            ],
             'name' => [
-              'required',
-            ],
-            'password' => [
                 'required',
-                'min:5',
-                'confirmed'
             ]
-            //
         ];
-
     }
+
     public function attributes()
     {
         return [
-            'username' => 'Tên tài khoản',
             'name' => 'Tên người dùng',
-            'password' => 'Mật khẩu'
+
         ];
     }
-//    public function attributes()
-//    {
-//        return [
-//            'username'=>'Công việc cần làm'
-//        ];
-//    }
 
-    /**
-     * Handle a failed validation attempt.
-     *
-     * @param  \Illuminate\Contracts\Validation\Validator $validator
-     * @return void
-     *
-     * @throws HttpResponseException
-     */
     protected function failedValidation(Validator $validator) : void
     {
         $errors = (new ValidationException($validator))->errors();

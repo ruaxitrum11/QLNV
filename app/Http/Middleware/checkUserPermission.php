@@ -20,6 +20,7 @@ class checkUserPermission
         $user = Auth::user();
 //        dd($user->isManager());
         if(Auth::check() && $user->isManager()){
+//            dd($next($request) );
             return $next($request);
         }
         return redirect('/');

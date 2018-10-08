@@ -47,6 +47,9 @@ Route::delete('/dashboard/deleteTask/{id}','Task\TaskController@deleteTask')->na
 Route::group(['middleware'=>'permission'],function(){
     Route::get('/admin','Admin\HomeController@getHome')->name('admin.getHome');
     Route::post('/admin/addUser','Admin\HomeController@addUser')->name('admin.addUser');
+    Route::get('/admin/userInfo/{id}','Admin\HomeController@infoUser')->name('admin.infoUser');
+    Route::put('/admin/updateUser/{id}','Admin\HomeController@updateUser')->name('admin.updateUser');
+    Route::delete('/admin/deleteUser/{id}','Admin\HomeController@deleteUser')->name('admin.deleteUser');
 });
 //Route::get('/admin','Admin\HomeController@getHome')->name('admin.getHome');
 //==============End Admin Home===============

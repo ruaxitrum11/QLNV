@@ -30,6 +30,9 @@ class RegisterRequest extends FormRequest
                 'min:5',
                 Rule::unique('users', 'username')
             ],
+            'name' => [
+                'required',
+            ],
             'password' => [
                 'required',
                 'min:5',
@@ -38,10 +41,12 @@ class RegisterRequest extends FormRequest
             //
         ];
     }
-    // public function attributes()
-    // {
-    //     return [
-    //         'username' => 'Hieu du'
-    //     ];
-    // }
+     public function attributes()
+     {
+         return [
+             'username' => 'Tên tài khoản',
+             'name' => 'Tên người dùng',
+             'password' => 'Mật khẩu'
+         ];
+     }
 }

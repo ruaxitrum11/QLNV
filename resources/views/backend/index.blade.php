@@ -8,13 +8,14 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/backend/index.css') }}">
-    {{--<link @yield('dashboard-css')>--}}
+    {{--<link rel="stylesheet" type="text/css" href="@yield('content-css')">--}}
+    <link @yield('dashboard-css')>
 </head>
 <body>
 <div class="container">
     @yield('content')
     @yield('content-home')
+    @yield('content-info')
 </div>
 </body>
 <script
